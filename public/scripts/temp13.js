@@ -19,12 +19,12 @@ function temp13Controller($scope, $window, $timeout, $http, tempSrc, callback, $
 
         
         for(var i=0; i< $scope.TemplateData.length; i++){
-    		if($scope.TemplateData[i].Template == 'temp13'){
-    			currencyData = $scope.TemplateData[i].TempData;
-    			// insertDataToScope();
-    			processData(currencyData);
-    		}
-    	}
+            if($scope.TemplateData[i].Template == 'temp13'){
+                currencyData = $scope.TemplateData[i].TempData;
+                // insertDataToScope();
+                processData(currencyData);
+            }
+        }
 
 
 

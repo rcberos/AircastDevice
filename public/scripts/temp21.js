@@ -1,15 +1,15 @@
 function temp21Controller($scope, $window, $timeout, $http, tempSrc, callback){ 
 
 
-  	var filter = ["now_playing","upcoming","popular","top_rated"];
+    var filter = ["now_playing","upcoming","popular","top_rated"];
     var size= ["w92", "w154", "w185", "w342", "w500", "w780", "original"]
     var config = {
-    	"filter": filter[1],
-    	"posterSize": size[4],
-    	"backgroundSize": size[5],
-    	"loop": true,
-    	"loopInterval": 13000,
-    	"animation": "flipInX"
+      "filter": filter[1],
+      "posterSize": size[4],
+      "backgroundSize": size[5],
+      "loop": true,
+      "loopInterval": 13000,
+      "animation": "flipInX"
     }
 
     var temp, movieData;
@@ -24,15 +24,15 @@ function temp21Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
 
     if (config.filter == "now_playing") {
-    	$scope.movieslist = "Movies in Cinemas";
+      $scope.movieslist = "Movies in Cinemas";
     }else if(config.filter == "upcoming"){
-    	$scope.movieslist = "Latest Movies";
+      $scope.movieslist = "Latest Movies";
     }else if(config.filter == "popular"){
-    	$scope.movieslist = "Popular Movies";
+      $scope.movieslist = "Popular Movies";
     }else if (config.filter == "top_rated"){
-    	$scope.movieslist = "Top Rated Movies";
+      $scope.movieslist = "Top Rated Movies";
     }else{
-    	$scope.movieslist = "Latest Movies";
+      $scope.movieslist = "Latest Movies";
     }
 
 
@@ -99,9 +99,9 @@ function temp21Controller($scope, $window, $timeout, $http, tempSrc, callback){
                     console.log("fetch data from the local storage");
                     getDataFromStorage();
                   }else{
-                  	if (cb == false) {
-                  		callback();	
-                  	}
+                    if (cb == false) {
+                      callback(); 
+                    }
                     
                   }
               })
@@ -141,18 +141,18 @@ function temp21Controller($scope, $window, $timeout, $http, tempSrc, callback){
         $scope.animation = config.animation;
 
         if (loopCounter == 0) {
-        	movieloop();
-        	cb = true;
-        	callCallback();
-        	loopCounter++;	
+          movieloop();
+          cb = true;
+          callCallback();
+          loopCounter++;  
         }
         
 
     }
 
     function changeMovie(){
-    	
-	       if ((currentPosition+1) >= moviesLength) {
+      
+         if ((currentPosition+1) >= moviesLength) {
               currentPosition = 0;
               localStorage.setItem('movie-position',currentPosition);
               console.log('setting data ' , currentPosition);
@@ -167,7 +167,7 @@ function temp21Controller($scope, $window, $timeout, $http, tempSrc, callback){
     }
 
     function movieRemoveClass(){
-		$(".movie-poster").delay(2000).removeClass("bounceInDown");   
+    $(".movie-poster").delay(2000).removeClass("bounceInDown");   
         $(".movie-title").delay(2000).removeClass(config.animation);   
         $(".movie-release-date").delay(2000).removeClass(config.animation);   
         $(".movie-description").delay(2000).removeClass(config.animation);   
@@ -176,7 +176,7 @@ function temp21Controller($scope, $window, $timeout, $http, tempSrc, callback){
     }
 
     function movieAddClass(){
-		$(".movie-poster").addClass("bounceInDown");
+    $(".movie-poster").addClass("bounceInDown");
         $(".movie-title").addClass(config.animation);
         $(".movie-release-date").addClass(config.animation);
         $(".movie-description").addClass(config.animation);
@@ -187,19 +187,19 @@ function temp21Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
     function movieloop(){
 
-	    if (config.loop) {
+      if (config.loop) {
 
-		 interval9 = setInterval(function () {
-		        movieRemoveClass();     
-		    }, config.loopInterval/2);
+     interval9 = setInterval(function () {
+            movieRemoveClass();     
+        }, config.loopInterval/2);
 
-		  interval10 = setInterval(function () {
-		        changeMovie();
-		        movieAddClass();
-		        $scope.$apply();
-		    }, config.loopInterval);
+      interval10 = setInterval(function () {
+            changeMovie();
+            movieAddClass();
+            $scope.$apply();
+        }, config.loopInterval);
 
-	    }
+      }
 
     }
 
@@ -207,21 +207,21 @@ function temp21Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
 
 
-	function removeInterval() {
+  function removeInterval() {
 
-		clearInterval(interval9);
-		clearInterval(interval10);		
+    clearInterval(interval9);
+    clearInterval(interval10);    
 
-	}
+  }
 
-	function callCallback(){
+  function callCallback(){
 
-		if (cb) {
-			$timeout(removeInterval, 37000);   
-	    	$timeout(callback, 39000);	
-		}
-	}
+    if (cb) {
+      $timeout(removeInterval, 37000);   
+        $timeout(callback, 39000);  
+    }
+  }
 
-	
+  
    
 };

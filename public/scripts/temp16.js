@@ -5,12 +5,12 @@ function temp16Controller($scope, $window, $timeout, $http, tempSrc, callback){
   var filter = ["now_playing","upcoming","popular","top_rated"];
     var size= ["w92", "w154", "w185", "w342", "w500", "w780", "original"]
     var config = {
-    	"filter": filter[1],
-    	"posterSize": size[4],
-    	"backgroundSize": size[5],
-    	"loop": true,
-    	"loopInterval": 10000,
-    	"animation": "flipInX"
+        "filter": filter[1],
+        "posterSize": size[4],
+        "backgroundSize": size[5],
+        "loop": true,
+        "loopInterval": 10000,
+        "animation": "flipInX"
     }
 
     var temp, movieData;
@@ -22,31 +22,31 @@ function temp16Controller($scope, $window, $timeout, $http, tempSrc, callback){
     config.url = "https://api.themoviedb.org/3/movie/"+config.filter+"?api_key=f2ebc8131c456f6ee2f134ac299aa40f&language=en&US";
 
     if (config.filter == "now_playing") {
-    	$scope.movieslist = "Movies in Cinemas";
+        $scope.movieslist = "Movies in Cinemas";
     }else if(config.filter == "upcoming"){
-    	$scope.movieslist = "Latest Movies";
+        $scope.movieslist = "Latest Movies";
     }else if(config.filter == "popular"){
-    	$scope.movieslist = "Popular Movies";
+        $scope.movieslist = "Popular Movies";
     }else if (config.filter == "top_rated"){
-    	$scope.movieslist = "Top Rated Movies";
+        $scope.movieslist = "Top Rated Movies";
     }else{
-    	$scope.movieslist = "Latest Movies";
+        $scope.movieslist = "Latest Movies";
     }
 
     for(var i=0; i< $scope.TemplateData.length; i++){
-		if($scope.TemplateData[i].Template == 'temp16'){
-			movieData = $scope.TemplateData[i].TempData.results;
-			currentPosition = $scope.TemplateData[i].moviePosition;
-			getDataFromStorage();
-		}
-	}
+        if($scope.TemplateData[i].Template == 'temp16'){
+            movieData = $scope.TemplateData[i].TempData.results;
+            currentPosition = $scope.TemplateData[i].moviePosition;
+            getDataFromStorage();
+        }
+    }
 
         function updateValues() {
-        	$scope.TemplateData.forEach(function(item){
-					if(item.Template == 'temp16'){
-							item.moviePosition = currentPosition;
-			    		}
-				})
+            $scope.TemplateData.forEach(function(item){
+                    if(item.Template == 'temp16'){
+                            item.moviePosition = currentPosition;
+                        }
+                })
         }
 
        function getDataFromStorage() {
@@ -77,16 +77,16 @@ function temp16Controller($scope, $window, $timeout, $http, tempSrc, callback){
         $scope.animation = config.animation;
 
         if (loopCounter == 0) {
-        	movieloop();
-        	loopCounter++;	
+            movieloop();
+            loopCounter++;  
         }
         
 
     }
 
     function changeMovie(){
-    	
-	       if ((currentPosition+1) >= moviesLength) {
+        
+           if ((currentPosition+1) >= moviesLength) {
               currentPosition = 0;
               updateValues();
               inserDataToScope();
@@ -100,7 +100,7 @@ function temp16Controller($scope, $window, $timeout, $http, tempSrc, callback){
     }
 
     function movieRemoveClass(){
-		$(".movie-poster").delay(2000).removeClass("bounceInDown");   
+        $(".movie-poster").delay(2000).removeClass("bounceInDown");   
         $(".movie-title").delay(2000).removeClass(config.animation);   
         $(".movie-release-date").delay(2000).removeClass(config.animation);   
         $(".movie-description").delay(2000).removeClass(config.animation);   
@@ -109,7 +109,7 @@ function temp16Controller($scope, $window, $timeout, $http, tempSrc, callback){
     }
 
     function movieAddClass(){
-		$(".movie-poster").addClass("bounceInDown");
+        $(".movie-poster").addClass("bounceInDown");
         $(".movie-title").addClass(config.animation);
         $(".movie-release-date").addClass(config.animation);
         $(".movie-description").addClass(config.animation);
@@ -120,19 +120,19 @@ function temp16Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
     function movieloop(){
 
-	    if (config.loop) {
+        if (config.loop) {
 
-		 interval9 = setInterval(function () {
-		        movieRemoveClass();     
-		    }, config.loopInterval/2);
+         interval9 = setInterval(function () {
+                movieRemoveClass();     
+            }, config.loopInterval/2);
 
-		  interval10 = setInterval(function () {
-		        changeMovie();
-		        movieAddClass();
-		        $scope.$apply();
-		    }, config.loopInterval);
+          interval10 = setInterval(function () {
+                changeMovie();
+                movieAddClass();
+                $scope.$apply();
+            }, config.loopInterval);
 
-	    }
+        }
 
     }
 
@@ -140,16 +140,16 @@ function temp16Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
 
 
-	function removeInterval() {
+    function removeInterval() {
 
 
-		if (interval9 != undefined && interval10 != undefined) {
-			clearInterval(interval9);
-			clearInterval(interval10);		
-		} 
+        if (interval9 != undefined && interval10 != undefined) {
+            clearInterval(interval9);
+            clearInterval(interval10);      
+        } 
 
 
-	}
+    }
 
     $timeout(removeInterval, 39000);   
     $timeout(callback, 40000);

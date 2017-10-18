@@ -93,15 +93,15 @@ function temp19Controller($scope, $window, $timeout, $http, tempSrc, callback, $
                                 .catch(function(){
 
                                     console.log('error occured on the 2nd level of currency');
-                                    callback();	
+                                    callback(); 
                                       if (localStorage.getItem('currency') != null && localStorage.getItem('currency') != '') {
                                         console.log("fetch data from the local storage");
                                         getDataFromStorage();
                                       }else{
-                                      	if (cb == false) {
-                                      		callback();	
-                                      	}
-                                      	
+                                        if (cb == false) {
+                                          callback(); 
+                                        }
+                                        
                                         // getDataFromApi();
                                       }
                                 })
@@ -117,14 +117,14 @@ function temp19Controller($scope, $window, $timeout, $http, tempSrc, callback, $
                   .catch(function() {
                       // handle error
                       console.log('error occurred on the first level of currency');
-                      callback();	
+                      callback(); 
                       if (localStorage.getItem('currency') != null && localStorage.getItem('currency') != '') {
                         console.log("fetch data from the local storage");
                         getDataFromStorage();
                       }else{
-                      	if (cb == false) {
-                      		callback();	
-                      	}
+                        if (cb == false) {
+                          callback(); 
+                        }
                         
                       }
                   })
@@ -141,9 +141,9 @@ function temp19Controller($scope, $window, $timeout, $http, tempSrc, callback, $
           temp = localStorage.getItem('currency');
           currencyData = JSON.parse(temp);
           if (loopCounter == 0) {
-          	cb = true;
-          	callCallback();
-          	loopCounter++;	
+            cb = true;
+            callCallback();
+            loopCounter++;  
           }
           
           inserDataToScope(currencyData);
@@ -260,24 +260,24 @@ function temp19Controller($scope, $window, $timeout, $http, tempSrc, callback, $
         }
         
         for(var i=0; i< $scope.TemplateData.length; i++){
-    		if($scope.TemplateData[i].Template == 'temp19'){
-    			currencyData = $scope.TemplateData[i].TempData;
-    			// insertDataToScope();
-    			inserDataToScope(currencyData);
-    		}
-    	}
+        if($scope.TemplateData[i].Template == 'temp19'){
+          currencyData = $scope.TemplateData[i].TempData;
+          // insertDataToScope();
+          inserDataToScope(currencyData);
+        }
+      }
 
         
         // checkIfCurrencyDataExpired();
 
-        $timeout(callback, 15000);	
+        $timeout(callback, 15000);  
 
    //      function callCallback() {
 
-		 // if (cb) {
-	  //       	$timeout(callback, 15000);	
-	  //       }
-        	
+     // if (cb) {
+    //        $timeout(callback, 15000);  
+    //       }
+          
    //      }
 
         

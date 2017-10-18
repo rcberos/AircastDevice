@@ -52,13 +52,13 @@ function temp11Controller($scope, $window, $timeout, $http, tempSrc, callback){
         starWidth: "50px",
     });
 
-    	for(var i=0; i< $scope.TemplateData.length; i++){
-    		if($scope.TemplateData[i].Template == 'temp11'){
-    			restaurantData = $scope.TemplateData[i].TempData;
-    			insertDataToScope();
-    		}
-    	}
-    	
+      for(var i=0; i< $scope.TemplateData.length; i++){
+        if($scope.TemplateData[i].Template == 'temp11'){
+          restaurantData = $scope.TemplateData[i].TempData;
+          insertDataToScope();
+        }
+      }
+      
       //insert all the data to the angular $scope
       function insertDataToScope() {
           
@@ -137,8 +137,8 @@ function temp11Controller($scope, $window, $timeout, $http, tempSrc, callback){
               changeStore(currentPosition,storeCount);
 
               if (loopCounter == 0) {
-              	restaurantloop();
-              	loopCounter++;
+                restaurantloop();
+                loopCounter++;
               }
               
 
@@ -220,18 +220,18 @@ function temp11Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
 
 
-	function removeInterval2(){
+  function removeInterval2(){
 
-		if (interval3 != undefined && interval4 != undefined) {
-			clearInterval(interval3);
-			clearInterval(interval4);		
-		} 
-		
-	}
+    if (interval3 != undefined && interval4 != undefined) {
+      clearInterval(interval3);
+      clearInterval(interval4);   
+    } 
+    
+  }
 
     $timeout(removeInterval2, 38000);      
-	$timeout(callback, 40000);
+  $timeout(callback, 40000);
 
-	// fetchRestaurantData(config.url);
+  // fetchRestaurantData(config.url);
 
 }

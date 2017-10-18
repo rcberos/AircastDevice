@@ -18,10 +18,10 @@ function temp15Controller($scope, $window, $timeout, $http, tempSrc, callback){
      '/assets/hugot-landscape-5.png'];
     
     for(var i=0; i< $scope.TemplateData.length; i++){
-    		if($scope.TemplateData[i].Template == 'temp15'){
-    			hugotList = $scope.TemplateData[i].TempData;
-    		}
-    	}
+        if($scope.TemplateData[i].Template == 'temp15'){
+          hugotList = $scope.TemplateData[i].TempData;
+        }
+      }
 
     
     var uniqueRandoms = [];
@@ -55,14 +55,14 @@ function temp15Controller($scope, $window, $timeout, $http, tempSrc, callback){
               console.log($scope.hugotText);
 
               if(!$scope.$$phase) {
-						$scope.$apply();
-					}
+            $scope.$apply();
+          }
 
 
-           	 if (loopCounter == 0) {
-           	 	hugotloop();
-           	 	loopCounter++;
-           	 }
+             if (loopCounter == 0) {
+              hugotloop();
+              loopCounter++;
+             }
              
 
              
@@ -74,25 +74,25 @@ function temp15Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
         function hugotloop(){
 
-	         if (config.loop) {
-	            
-	            // insertDataToScope();
-	    
-	            interval5 = setInterval(function(){
-	                hugotRemoveClass();
-	            },config.loopInterval/2);
+           if (config.loop) {
+              
+              // insertDataToScope();
+      
+              interval5 = setInterval(function(){
+                  hugotRemoveClass();
+              },config.loopInterval/2);
 
-	            interval6 = setInterval(function(){
+              interval6 = setInterval(function(){
 
-	                insertDataToScope();
-	                hugotAddClass();
-	                if(!$scope.$$phase) {
-						$scope.$apply();
-					}
+                  insertDataToScope();
+                  hugotAddClass();
+                  if(!$scope.$$phase) {
+            $scope.$apply();
+          }
 
-	            },config.loopInterval);
-	    
-	        }       	
+              },config.loopInterval);
+      
+          }         
         }
         
         
@@ -114,17 +114,17 @@ function temp15Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
 
 
-	function removeInterval() {
+  function removeInterval() {
 
-		if (interval5 != undefined && interval6 != undefined) {
-			clearInterval(interval5);
-			clearInterval(interval6);			
-		} 
+    if (interval5 != undefined && interval6 != undefined) {
+      clearInterval(interval5);
+      clearInterval(interval6);     
+    } 
 
 
-	}
+  }
 
-	insertDataToScope();
+  insertDataToScope();
 
     $timeout(removeInterval, 29000);   
     $timeout(callback, 30000);

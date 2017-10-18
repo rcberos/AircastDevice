@@ -20,15 +20,15 @@ function temp14Controller($scope, $window, $timeout, $http, tempSrc, callback){
 
 
     $scope.TemplateData.forEach(function(item){
-		if(item.Template == 'temp14'){
-    			twitterData = item.TempData;
-    			twitterPosition = item.lastTweet;
-    			twitterArray = item.lastArray;
+    if(item.Template == 'temp14'){
+          twitterData = item.TempData;
+          twitterPosition = item.lastTweet;
+          twitterArray = item.lastArray;
 
-		          $(".twitter .loader").fadeOut("slow");
-		          inserDataToScope();
-    		}
-	})
+              $(".twitter .loader").fadeOut("slow");
+              inserDataToScope();
+        }
+  })
 
 
       function inserDataToScope(){
@@ -39,7 +39,7 @@ function temp14Controller($scope, $window, $timeout, $http, tempSrc, callback){
             var tweetsCount  = tweets.length-1;
             var currentPosition = twitterPosition;
             var nextTweetPosition = (currentPosition < tweetsCount)? currentPosition+1 : 0;
-            console.log("Current Tweet Position: " + currentPosition +"/"+tweetsCount);
+            console.log("Current Tweet Position: " + currentPosition +"/"+tweetsCount +' of array['+twitterArray+']');
                 
             // $scope.topHashtag = removeSpace(hashtagList[twitterCounter]);
             $scope.topHashtag = removeSpace(twitterData[twitterArray].Hashtag);
@@ -75,8 +75,8 @@ function temp14Controller($scope, $window, $timeout, $http, tempSrc, callback){
             // checkIfDataEnds();
 
               if (loopCounter == 0) {
-              	twitterloop();
-              	loopCounter++;
+                twitterloop();
+                loopCounter++;
               }
             
         
@@ -85,23 +85,23 @@ function temp14Controller($scope, $window, $timeout, $http, tempSrc, callback){
             
         function twitterloop(){
 
-	        if (config.loop) {
+          if (config.loop) {
 
-	              interval7 = setInterval(function () {
-	                  twitterRemoveClass();
-	                }, config.loopInterval/2);
+                interval7 = setInterval(function () {
+                    twitterRemoveClass();
+                  }, config.loopInterval/2);
 
-	            
-	              interval8 = setInterval(function () {
+              
+                interval8 = setInterval(function () {
 
-	                  $scope.$apply(function(){
-	                    inserDataToScope();
-	                    twitterAddClass();
-	                    });
-	                    
-	                }, config.loopInterval);
-	            
-	        }        	
+                    $scope.$apply(function(){
+                      inserDataToScope();
+                      twitterAddClass();
+                      });
+                      
+                  }, config.loopInterval);
+              
+          }         
         }
         
 
@@ -129,12 +129,12 @@ function temp14Controller($scope, $window, $timeout, $http, tempSrc, callback){
         }
         
         function updateValues() {
-        	$scope.TemplateData.forEach(function(item){
-					if(item.Template == 'temp14'){
-							item.lastTweet = twitterPosition
-							item.lastArray = twitterArray;
-			    		}
-				})
+          $scope.TemplateData.forEach(function(item){
+          if(item.Template == 'temp14'){
+              item.lastTweet = twitterPosition
+              item.lastArray = twitterArray;
+              }
+        })
         }
 
       function changePosition(currentPosition,tweetsCount) {
@@ -144,7 +144,7 @@ function temp14Controller($scope, $window, $timeout, $http, tempSrc, callback){
                   twitterArray = twitterArray+1;
                   console.log('twitterData: '+twitterData.length);
                   if(twitterArray>= twitterData.length){
-                  	twitterArray = 0;
+                    twitterArray = 0;
                   }
                   updateValues();
                   console.log('twitterArray: '+twitterArray);
@@ -167,15 +167,15 @@ function temp14Controller($scope, $window, $timeout, $http, tempSrc, callback){
         }
 
 
-	function removeInterval() {
+  function removeInterval() {
 
-		if (interval7 != undefined && interval8 != undefined) {
-			clearInterval(interval7);
-			clearInterval(interval8);		
-		} 
+    if (interval7 != undefined && interval8 != undefined) {
+      clearInterval(interval7);
+      clearInterval(interval8);   
+    } 
 
 
-	}
+  }
 
 
     $timeout(removeInterval, 38000);   

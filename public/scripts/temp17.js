@@ -1,6 +1,6 @@
 
 function temp17Controller($scope, $window, $timeout, $http, temp2Src, callback, $q){
-	var loopCounter = 0;
+  var loopCounter = 0;
     var cb = false;
     var interval1, interval2;
 
@@ -42,7 +42,7 @@ function temp17Controller($scope, $window, $timeout, $http, temp2Src, callback, 
           if (localStorage.getItem('news-expiration-date') == null) {
 
               getDataFromApi();
-          	
+            
           }else{
 
             if(currentDate == localStorage.getItem('news-expiration-date')) {
@@ -76,56 +76,11 @@ function temp17Controller($scope, $window, $timeout, $http, temp2Src, callback, 
     // checkIfNewsDataExpired();
 
     for(var i=0; i< $scope.TemplateData.length; i++){
-    		if($scope.TemplateData[i].Template == 'temp17'){
-    			localData = $scope.TemplateData[i].TempData;
-    			insertDataToScope();
-    		}
-    	}
-
-        
-
-      // this function  will get data from the api if the json file is not yet saved in the local storage
-      function getDataFromApi() {
-
-          console.log("fetch data from news api");
-
-
-          $http.get(config.url)
-              .then(function(response) {
-
-                  var currentDate = moment().format('MM-DD-YYYY');
-
-                  if (response.data) {
-                      localStorage.setItem('news-expiration-date',currentDate);
-                      localStorage.setItem('news',JSON.stringify(response.data));
-                      localStorage.setItem('news-position',0);
-                      localStorage.setItem('news-source',config.source);
-                      console.log("fetch data from the local storage");
-                      //location.reload();
-                      insertDataToScope();
-                  } else {
-                      console.log("nothing returned");
-                  }
-              })
-              .catch(function() {
-                  // handle error
-                  console.log('error occurred');
-
-                  if (localStorage.getItem('news') != null && localStorage.getItem('news') != '') {
-                    console.log("fetch data from the local storage");
-                    insertDataToScope();
-                  }else{
-
-                  	if (cb == false) {
-                  		callback();	
-                  	}
-                                        
-                    // $(".news-loader").fadeIn("slow");
-                  }
-              })
-
+        if($scope.TemplateData[i].Template == 'temp17'){
+          localData = $scope.TemplateData[i].TempData;
+          insertDataToScope();
+        }
       }
-
           //insert all the data to the angular $scope
       function insertDataToScope() {
           
@@ -188,10 +143,10 @@ function temp17Controller($scope, $window, $timeout, $http, temp2Src, callback, 
               changeNews(currentPosition,newsCount);
 
               if (loopCounter == 0) {
-              	newsloop();
-              	cb = true;
-              	callCallback();
-              	loopCounter++;
+                newsloop();
+                cb = true;
+                callCallback();
+                loopCounter++;
               }
 
               
@@ -223,7 +178,7 @@ function temp17Controller($scope, $window, $timeout, $http, temp2Src, callback, 
 
     function removeNewsClass(){
 
-		$(".news-portrait .header").delay(2000).removeClass("fadeInLeft");
+    $(".news-portrait .header").delay(2000).removeClass("fadeInLeft");
         $(".news-portrait .news").delay(2000).removeClass("news-animation");
         $(".news-portrait .news-aside-div").delay(2000).removeClass("fadeInRight");
         $(".news-portrait .divider-bottom").delay(2000).removeClass("fadeInUp");
@@ -280,20 +235,20 @@ function temp17Controller($scope, $window, $timeout, $http, temp2Src, callback, 
          
 
 
-	function removeInterval() {
+  function removeInterval() {
 
-		clearInterval(interval13);
-		clearInterval(interval14);		
+    clearInterval(interval13);
+    clearInterval(interval14);    
 
-		
-	}
+    
+  }
 
-	function callCallback() {
+  function callCallback() {
 
-		if (cb) {
-			$timeout(removeInterval, 37000);      
-			$timeout(callback, 39000);	
-		}
-		
-	}
+    if (cb) {
+      $timeout(removeInterval, 37000);      
+      $timeout(callback, 39000);  
+    }
+    
+  }
 }
